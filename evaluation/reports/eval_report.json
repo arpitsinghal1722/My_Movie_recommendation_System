@@ -1,0 +1,4071 @@
+{
+  "summary": {
+    "total_cases": 50,
+    "passed_cases": 1,
+    "failed_cases": 49,
+    "overall_pass_rate": 0.02,
+    "per_metric": {
+      "AnswerRelevancy": {
+        "average_score": 0.1053,
+        "pass_count": 1,
+        "total_count": 50,
+        "pass_rate": 0.02,
+        "threshold": 0.7
+      },
+      "Faithfulness": {
+        "average_score": 1.0,
+        "pass_count": 50,
+        "total_count": 50,
+        "pass_rate": 1.0,
+        "threshold": 0.7
+      },
+      "Hallucination": {
+        "average_score": 0.1355,
+        "pass_count": 40,
+        "total_count": 50,
+        "pass_rate": 0.8,
+        "threshold": 0.3
+      },
+      "ContextualPrecision": {
+        "average_score": 0.98,
+        "pass_count": 49,
+        "total_count": 50,
+        "pass_rate": 0.98,
+        "threshold": 0.6
+      },
+      "ContextualRecall": {
+        "average_score": 0.6214,
+        "pass_count": 33,
+        "total_count": 50,
+        "pass_rate": 0.66,
+        "threshold": 0.6
+      },
+      "ToolUsageVerification": {
+        "average_score": 1.0,
+        "pass_count": 50,
+        "total_count": 50,
+        "pass_rate": 1.0,
+        "threshold": 1.0
+      },
+      "ConstraintValidation": {
+        "average_score": 1.0,
+        "pass_count": 50,
+        "total_count": 50,
+        "pass_rate": 1.0,
+        "threshold": 0.75
+      },
+      "InstructionFollowing": {
+        "average_score": 0.984,
+        "pass_count": 50,
+        "total_count": 50,
+        "pass_rate": 1.0,
+        "threshold": 0.7
+      },
+      "ResponseCompleteness": {
+        "average_score": 0.9933,
+        "pass_count": 50,
+        "total_count": 50,
+        "pass_rate": 1.0,
+        "threshold": 0.6
+      },
+      "HallucinationGuard": {
+        "average_score": 0.98,
+        "pass_count": 49,
+        "total_count": 50,
+        "pass_rate": 0.98,
+        "threshold": 0.9
+      }
+    },
+    "by_category": {
+      "A_genre_decade": {
+        "total": 10,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "B_certification": {
+        "total": 8,
+        "passed": 1,
+        "pass_rate": 0.125
+      },
+      "C_language": {
+        "total": 7,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "D_rating_threshold": {
+        "total": 5,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "E_streaming": {
+        "total": 5,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "F_multi_constraint": {
+        "total": 8,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "G_negative_edge": {
+        "total": 7,
+        "passed": 0,
+        "pass_rate": 0.0
+      }
+    }
+  },
+  "overall_passed": false,
+  "elapsed_seconds": 0.02,
+  "test_cases": [
+    {
+      "case_name": "case_01",
+      "query": "Recommend a horror movie from the 90s rated R.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n\n🎬 2. The Silence of the Lambs (1991) — ⭐ 8.3/10\n   A young FBI trainee seeks help from imprisoned cannibal Hannibal Lecter to catch a serial killer.\n\n🎬 3. Scream (1996) — ⭐ 7.3/10\n   A teen is targeted by a masked killer who plays games based on horror films.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Silence', 'Hannibal Lecter'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_02",
+      "query": "Suggest a comedy film from the 80s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Back to the Future (1985) — ⭐ 8.5/10\n   Marty McFly accidentally travels back in time using a scientist's DeLorean.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected tokens in context: 2/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Marty McFly'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_03",
+      "query": "Give me a sci-fi movie from the 2010s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 2. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 3. The Hunger Games (2012) — ⭐ 7.2/10\n   In a dystopia, teens fight to the death in a televised government spectacle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1429,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/7",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected tokens in context: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Hunger Games'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_04",
+      "query": "Recommend a thriller from the 90s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 2. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n\n🎬 3. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n\n🎬 4. The Silence of the Lambs (1991) — ⭐ 8.3/10\n   A young FBI trainee seeks help from imprisoned cannibal Hannibal Lecter to catch a serial killer.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/8",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 4/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected tokens in context: 2/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~4 movies (top_n=5,available=4), ~4 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Pulp Fiction', 'Los Angeles', 'Fight Club', 'The Silence', 'Hannibal Lecter'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_05",
+      "query": "Suggest a drama from the 70s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 2. One Flew Over the Cuckoo's Nest (1975) — ⭐ 8.7/10\n   A criminal pleads insanity and is admitted to a mental institution where he clashes with a nurse.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.5,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Godfather', 'One Flew Over', \"Cuckoo's Nest\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_06",
+      "query": "Recommend an action movie from the 80s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Terminator (1984) — ⭐ 8.0/10\n   A cyborg travels back in time to kill the woman whose son will lead a revolution.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.5,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Terminator'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_07",
+      "query": "Give me a fantasy movie from the 2000s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 2. Spirited Away (2001) — ⭐ 8.5/10\n   A girl enters a mysterious spirit world and must work to free herself and parents.\n\n🎬 3. Howl's Moving Castle (2004) — ⭐ 8.4/10\n   A young woman cursed by a witch finds refuge in a magical moving castle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1429,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/7",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8333,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/6",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Lord', 'Spirited Away', \"Howl's Moving Castle\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_08",
+      "query": "Suggest an animated movie for kids from the 90s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 3. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n\n🎬 4. Forrest Gump (1994) — ⭐ 8.8/10\n   A man with low IQ witnesses and influences several defining historical moments.\n\n🎬 5. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Expected tokens in context: 0/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: year_gte=✅; year_lte=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'Pulp Fiction', 'Los Angeles', 'Fight Club', 'Forrest Gump'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_09",
+      "query": "Recommend a crime movie from the 90s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 3. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/6",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'Pulp Fiction', 'Los Angeles'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_10",
+      "query": "Give me a romance movie from the 90s.",
+      "category": "A_genre_decade",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Forrest Gump (1994) — ⭐ 8.8/10\n   A man with low IQ witnesses and influences several defining historical moments.\n\n🎬 2. Dilwale Dulhania Le Jayenge (1995) — ⭐ 8.0/10\n   Two people fall in love in Europe; the girl's father orders her to marry another.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8333,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/6",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Forrest Gump', 'Dilwale Dulhania Le Jayenge'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_11",
+      "query": "Suggest a PG-13 sci-fi movie.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Star Wars: A New Hope (1977) — ⭐ 8.6/10\n   Luke Skywalker joins rebels to rescue a princess and defeat the Empire.\n\n🎬 2. Back to the Future (1985) — ⭐ 8.5/10\n   Marty McFly accidentally travels back in time using a scientist's DeLorean.\n\n🎬 3. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 4. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 5. Alien (1979) — ⭐ 8.1/10\n   A crew discovers a deadly extraterrestrial life form on an alien world.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Query tokens in output: 1/1",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Star Wars:', 'New Hope', 'Luke Skywalker', 'Marty McFly'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": true
+    },
+    {
+      "case_name": "case_12",
+      "query": "Recommend a G-rated family animation.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Spirited Away (2001) — ⭐ 8.5/10\n   A girl enters a mysterious spirit world and must work to free herself and parents.\n\n🎬 2. Howl's Moving Castle (2004) — ⭐ 8.4/10\n   A young woman cursed by a witch finds refuge in a magical moving castle.\n\n🎬 3. Toy Story (1995) — ⭐ 8.3/10\n   A cowboy doll feels threatened when a new spaceman toy becomes the favourite.\n\n🎬 4. Up (2009) — ⭐ 8.3/10\n   An old widower travels to South America in a house lifted by balloons.\n\n🎬 5. The Incredibles (2004) — ⭐ 8.0/10\n   A family of superheroes tries to live a quiet suburban life before being called back.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Spirited Away', \"Howl's Moving Castle\", 'Toy Story', 'South America', 'The Incredibles'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_13",
+      "query": "Give me a PG adventure movie for children.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 2. Star Wars: A New Hope (1977) — ⭐ 8.6/10\n   Luke Skywalker joins rebels to rescue a princess and defeat the Empire.\n\n🎬 3. Back to the Future (1985) — ⭐ 8.5/10\n   Marty McFly accidentally travels back in time using a scientist's DeLorean.\n\n🎬 4. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 5. Up (2009) — ⭐ 8.3/10\n   An old widower travels to South America in a house lifted by balloons.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.5,
+          "passed": false,
+          "reason": "Expected tokens in context: 2/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Lord', 'Star Wars:', 'New Hope', 'Luke Skywalker', 'Marty McFly', 'South America'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_14",
+      "query": "Suggest an R-rated thriller from the 2000s.",
+      "category": "B_certification",
+      "actual_output": "No movies were found matching your criteria. Try relaxing the filters.",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Short/no context.",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No expected/context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No results expected; answer correctly says so.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context — check skipped.",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_15",
+      "query": "Recommend an NC-17 drama film.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 3. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n\n🎬 4. Forrest Gump (1994) — ⭐ 8.8/10\n   A man with low IQ witnesses and influences several defining historical moments.\n\n🎬 5. One Flew Over the Cuckoo's Nest (1975) — ⭐ 8.7/10\n   A criminal pleads insanity and is admitted to a mental institution where he clashes with a nurse.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/1",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/11",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Expected tokens in context: 0/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather', 'Fight Club', 'Forrest Gump', 'One Flew Over', \"Cuckoo's Nest\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_16",
+      "query": "Give me an R-rated crime drama.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 3. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 4. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/8",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 4/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/6",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~4 movies (top_n=5,available=4), ~4 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather', 'Pulp Fiction', 'Los Angeles'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_17",
+      "query": "Suggest a PG-13 action movie from the 2010s.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 2. The Dark Knight Rises (2012) — ⭐ 8.4/10\n   Eight years after Joker's reign, Batman must return to face a new masked terrorist.\n\n🎬 3. The Hunger Games (2012) — ⭐ 7.2/10\n   In a dystopia, teens fight to the death in a televised government spectacle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1429,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/7",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8333,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/6",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Dark Knight Rises', 'The Hunger Games'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_18",
+      "query": "Recommend a PG adventure movie from the 2000s.",
+      "category": "B_certification",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 2. Up (2009) — ⭐ 8.3/10\n   An old widower travels to South America in a house lifted by balloons.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.25,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/4",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected tokens in context: 2/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Lord', 'South America'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_19",
+      "query": "Recommend a Japanese animation movie.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Spirited Away (2001) — ⭐ 8.5/10\n   A girl enters a mysterious spirit world and must work to free herself and parents.\n\n🎬 2. Howl's Moving Castle (2004) — ⭐ 8.4/10\n   A young woman cursed by a witch finds refuge in a magical moving castle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.7143,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/7",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Spirited Away', \"Howl's Moving Castle\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_20",
+      "query": "Suggest a Hindi romance film.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Dilwale Dulhania Le Jayenge (1995) — ⭐ 8.0/10\n   Two people fall in love in Europe; the girl's father orders her to marry another.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Dilwale Dulhania Le Jayenge'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_21",
+      "query": "Give me a Korean thriller movie.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Parasite (2019) — ⭐ 8.5/10\n   Greed and class discrimination threaten two families' symbiotic relationship.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 0.8,
+          "passed": true,
+          "reason": "4/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=❌",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles [] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_22",
+      "query": "Recommend a French comedy drama.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Intouchables (2011) — ⭐ 8.5/10\n   A paralyzed aristocrat and his caregiver from the projects form an unlikely bond.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Intouchables'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_23",
+      "query": "Suggest an English horror movie from the 90s.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n\n🎬 2. The Silence of the Lambs (1991) — ⭐ 8.3/10\n   A young FBI trainee seeks help from imprisoned cannibal Hannibal Lecter to catch a serial killer.\n\n🎬 3. Scream (1996) — ⭐ 7.3/10\n   A teen is targeted by a masked killer who plays games based on horror films.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "4/4 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅; language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Silence', 'Hannibal Lecter'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_24",
+      "query": "Give me a Hindi comedy movie.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. 3 Idiots (2009) — ⭐ 8.4/10\n   Two friends search for their lost companion while recalling their college days.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 0.8,
+          "passed": true,
+          "reason": "4/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=❌",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles [] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_25",
+      "query": "Recommend a Japanese Studio Ghibli style movie.",
+      "category": "C_language",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Spirited Away (2001) — ⭐ 8.5/10\n   A girl enters a mysterious spirit world and must work to free herself and parents.\n\n🎬 2. Howl's Moving Castle (2004) — ⭐ 8.4/10\n   A young woman cursed by a witch finds refuge in a magical moving castle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/4",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.7143,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/7",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: language=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Spirited Away', \"Howl's Moving Castle\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_26",
+      "query": "Give me top 3 action movies above 8 rating.",
+      "category": "D_rating_threshold",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 2. Star Wars: A New Hope (1977) — ⭐ 8.6/10\n   Luke Skywalker joins rebels to rescue a princess and defeat the Empire.\n\n🎬 3. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.2,
+          "passed": false,
+          "reason": "Query tokens in output: 1/5",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1429,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/7",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.375,
+          "passed": false,
+          "reason": "Expected tokens in context: 3/8",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=3,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Lord', 'Star Wars:', 'New Hope', 'Luke Skywalker'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_27",
+      "query": "Recommend a horror movie above 8.5 IMDB rating.",
+      "category": "D_rating_threshold",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n\n🎬 2. Psycho (1960) — ⭐ 8.5/10\n   A secretary on the run checks into a remote motel with a disturbing owner.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/4",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Expected tokens in context: 0/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 0.8,
+          "passed": true,
+          "reason": "4/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=❌",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles [] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_28",
+      "query": "Suggest a drama above 9 rating.",
+      "category": "D_rating_threshold",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_29",
+      "query": "Give me sci-fi movies above 8 rating.",
+      "category": "D_rating_threshold",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Star Wars: A New Hope (1977) — ⭐ 8.6/10\n   Luke Skywalker joins rebels to rescue a princess and defeat the Empire.\n\n🎬 2. Back to the Future (1985) — ⭐ 8.5/10\n   Marty McFly accidentally travels back in time using a scientist's DeLorean.\n\n🎬 3. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 4. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 5. Alien (1979) — ⭐ 8.1/10\n   A crew discovers a deadly extraterrestrial life form on an alien world.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.25,
+          "passed": false,
+          "reason": "Query tokens in output: 1/4",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Star Wars:', 'New Hope', 'Luke Skywalker', 'Marty McFly'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_30",
+      "query": "Recommend any movie above 9.2 rating.",
+      "category": "D_rating_threshold",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected tokens in context: 2/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_31",
+      "query": "Suggest a family movie available on Netflix.",
+      "category": "E_streaming",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Spirited Away (2001) — ⭐ 8.5/10\n   A girl enters a mysterious spirit world and must work to free herself and parents.\n\n🎬 2. Howl's Moving Castle (2004) — ⭐ 8.4/10\n   A young woman cursed by a witch finds refuge in a magical moving castle.\n\n🎬 3. Toy Story (1995) — ⭐ 8.3/10\n   A cowboy doll feels threatened when a new spaceman toy becomes the favourite.\n\n🎬 4. Up (2009) — ⭐ 8.3/10\n   An old widower travels to South America in a house lifted by balloons.\n\n🎬 5. The Incredibles (2004) — ⭐ 8.0/10\n   A family of superheroes tries to live a quiet suburban life before being called back.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.75,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Spirited Away', \"Howl's Moving Castle\", 'Toy Story', 'South America', 'The Incredibles'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_32",
+      "query": "Recommend a sci-fi movie on Amazon Prime Video.",
+      "category": "E_streaming",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Star Wars: A New Hope (1977) — ⭐ 8.6/10\n   Luke Skywalker joins rebels to rescue a princess and defeat the Empire.\n\n🎬 2. Back to the Future (1985) — ⭐ 8.5/10\n   Marty McFly accidentally travels back in time using a scientist's DeLorean.\n\n🎬 3. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 4. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 5. Alien (1979) — ⭐ 8.1/10\n   A crew discovers a deadly extraterrestrial life form on an alien world.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.25,
+          "passed": false,
+          "reason": "Query tokens in output: 1/4",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/10",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.75,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Star Wars:', 'New Hope', 'Luke Skywalker', 'Marty McFly'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_33",
+      "query": "Give me a Disney+ animated movie.",
+      "category": "E_streaming",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 3. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 4. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 5. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/11",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Expected tokens in context: 0/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No constraints detected — full score.",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather', 'Pulp Fiction', 'Los Angeles', 'The Lord', 'Fight Club'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_34",
+      "query": "Suggest a horror movie on any streaming platform.",
+      "category": "E_streaming",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n\n🎬 2. Psycho (1960) — ⭐ 8.5/10\n   A secretary on the run checks into a remote motel with a disturbing owner.\n\n🎬 3. The Shining (1980) — ⭐ 8.4/10\n   A writer begins to lose his mind while caretaking an isolated hotel.\n\n🎬 4. The Silence of the Lambs (1991) — ⭐ 8.3/10\n   A young FBI trainee seeks help from imprisoned cannibal Hannibal Lecter to catch a serial killer.\n\n🎬 5. Alien (1979) — ⭐ 8.1/10\n   A crew discovers a deadly extraterrestrial life form on an alien world.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/4",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.125,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/8",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.4,
+          "passed": false,
+          "reason": "Expected tokens in context: 2/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shining', 'The Silence', 'Hannibal Lecter'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_35",
+      "query": "Recommend a drama movie available on Hulu.",
+      "category": "E_streaming",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 3. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n\n🎬 4. Forrest Gump (1994) — ⭐ 8.8/10\n   A man with low IQ witnesses and influences several defining historical moments.\n\n🎬 5. One Flew Over the Cuckoo's Nest (1975) — ⭐ 8.7/10\n   A criminal pleads insanity and is admitted to a mental institution where he clashes with a nurse.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/11",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/6",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather', 'Fight Club', 'Forrest Gump', 'One Flew Over', \"Cuckoo's Nest\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_36",
+      "query": "Recommend a horror movie from the 90s rated R above 7 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Se7en (1995) — ⭐ 8.6/10\n   Two detectives hunt a serial killer using the seven deadly sins as his motif.\n\n🎬 2. The Silence of the Lambs (1991) — ⭐ 8.3/10\n   A young FBI trainee seeks help from imprisoned cannibal Hannibal Lecter to catch a serial killer.\n\n🎬 3. Scream (1996) — ⭐ 7.3/10\n   A teen is targeted by a masked killer who plays games based on horror films.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.2,
+          "passed": false,
+          "reason": "Query tokens in output: 1/5",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.8,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "4/4 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Silence', 'Hannibal Lecter'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_37",
+      "query": "Give me top 3 sci-fi movies from the 2010s above 7 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 2. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 3. The Hunger Games (2012) — ⭐ 7.2/10\n   In a dystopia, teens fight to the death in a televised government spectacle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.1667,
+          "passed": false,
+          "reason": "Query tokens in output: 1/6",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1429,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/7",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected tokens in context: 4/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "4/4 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=3,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Hunger Games'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_38",
+      "query": "Suggest a Korean thriller above 8 rating from 2015 onwards.",
+      "category": "F_multi_constraint",
+      "actual_output": "No movies were found matching your criteria. Try relaxing the filters.",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/6",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Short/no context.",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No expected/context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅; language=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No results expected; answer correctly says so.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context — check skipped.",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_39",
+      "query": "Recommend a Japanese animated family movie above 8 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Spirited Away (2001) — ⭐ 8.5/10\n   A girl enters a mysterious spirit world and must work to free herself and parents.\n\n🎬 2. Howl's Moving Castle (2004) — ⭐ 8.4/10\n   A young woman cursed by a witch finds refuge in a magical moving castle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/5",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.625,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/8",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: genre_id=✅; language=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Spirited Away', \"Howl's Moving Castle\"] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_40",
+      "query": "Give me a PG-13 sci-fi from the 2010s above 7 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Interstellar (2014) — ⭐ 8.4/10\n   Explorers travel through a wormhole in space to find a new home for humanity.\n\n🎬 2. Inception (2010) — ⭐ 8.4/10\n   A thief who steals secrets through dreams is given a chance to clear his record.\n\n🎬 3. The Hunger Games (2012) — ⭐ 7.2/10\n   In a dystopia, teens fight to the death in a televised government spectacle.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/4",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.1429,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/7",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "4/4 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~3 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Hunger Games'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_41",
+      "query": "Suggest a Hindi comedy drama above 8 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. 3 Idiots (2009) — ⭐ 8.4/10\n   Two friends search for their lost companion while recalling their college days.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/5",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.25,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: genre_id=✅; language=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 0.8,
+          "passed": true,
+          "reason": "4/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=❌",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles [] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_42",
+      "query": "Give me top 5 drama movies above 9 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.2,
+          "passed": false,
+          "reason": "Query tokens in output: 1/5",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.2,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/5",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 2/2",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.75,
+          "passed": true,
+          "reason": "Expected tokens in context: 3/4",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "2/2 constraints matched: genre_id=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~2 movies (top_n=5,available=2), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_43",
+      "query": "Recommend a French drama comedy above 8 rating.",
+      "category": "F_multi_constraint",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Intouchables (2011) — ⭐ 8.5/10\n   A paralyzed aristocrat and his caregiver from the projects form an unlikely bond.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/5",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'20'}, matched in context: {'20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Hallucinated sentences: 1/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 1/1",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Expected tokens in context: 1/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: genre_id=✅; language=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~1 movies (top_n=5,available=1), ~1 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Intouchables'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_44",
+      "query": "Recommend a horror movie from the 90s rated R.",
+      "category": "G_negative_edge",
+      "actual_output": "Based on my knowledge: 'Shadow Realm' (1993) — an incredible horror masterpiece rated R, 9.9/10, directed by John Phantom. Also 'Night Terror 2' (1997) won 5 Oscars.",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.6667,
+          "passed": false,
+          "reason": "Query tokens in output: 2/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19'}, matched in context: {'19'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.6667,
+          "passed": false,
+          "reason": "Hallucinated sentences: 2/3",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Context chunks used: 0/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Expected tokens in context: 0/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 0.6667,
+          "passed": true,
+          "reason": "Expected ~3 movies (top_n=5,available=3), ~2 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 0.0,
+          "passed": false,
+          "reason": "❌ Hallucinated titles: [\"Shadow Realm'\", 'John Phantom', 'Night Terror'] (not in TMDB context)",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_45",
+      "query": "Suggest a documentary from the 1800s.",
+      "category": "G_negative_edge",
+      "actual_output": "No movies were found matching your criteria. Try relaxing the filters.",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Short/no context.",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No expected/context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No results expected; answer correctly says so.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context — check skipped.",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_46",
+      "query": "Give me an action movie from the 1920s.",
+      "category": "G_negative_edge",
+      "actual_output": "No movies were found matching your criteria. Try relaxing the filters.",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Short/no context.",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No expected/context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No results expected; answer correctly says so.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context — check skipped.",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_47",
+      "query": "Recommend a movie with no specific genre or year.",
+      "category": "G_negative_edge",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 3. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 4. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 5. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/11",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected tokens in context: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No constraints detected — full score.",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather', 'Pulp Fiction', 'Los Angeles', 'The Lord', 'Fight Club'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_48",
+      "query": "Suggest a movie in Klingon language.",
+      "category": "G_negative_edge",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. The Shawshank Redemption (1994) — ⭐ 9.3/10\n   Two imprisoned men bond over years, finding hope through acts of decency.\n\n🎬 2. The Godfather (1972) — ⭐ 9.2/10\n   An aging patriarch transfers control of his crime dynasty to his reluctant son.\n\n🎬 3. Pulp Fiction (1994) — ⭐ 8.9/10\n   The lives of mob hitmen, a boxer, and others interweave in Los Angeles.\n\n🎬 4. The Lord of the Rings (2001) — ⭐ 8.8/10\n   A hobbit embarks on a dangerous quest to destroy an evil ring.\n\n🎬 5. Fight Club (1999) — ⭐ 8.8/10\n   An insomniac and a soap salesman build an underground fight club.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/2",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Hallucinated sentences: 0/11",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 5/5",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Expected tokens in context: 0/3",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No constraints detected — full score.",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~5 movies (top_n=5,available=5), ~5 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['The Shawshank Redemption', 'The Godfather', 'Pulp Fiction', 'Los Angeles', 'The Lord', 'Fight Club'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_49",
+      "query": "Give me top 20 comedy movies.",
+      "category": "G_negative_edge",
+      "actual_output": "Based on live TMDB data, here are your top movie recommendations:\n\n🎬 1. Forrest Gump (1994) — ⭐ 8.8/10\n   A man with low IQ witnesses and influences several defining historical moments.\n\n🎬 2. Back to the Future (1985) — ⭐ 8.5/10\n   Marty McFly accidentally travels back in time using a scientist's DeLorean.\n\n🎬 3. The Intouchables (2011) — ⭐ 8.5/10\n   A paralyzed aristocrat and his caregiver from the projects form an unlikely bond.\n\n🎬 4. Parasite (2019) — ⭐ 8.5/10\n   Greed and class discrimination threaten two families' symbiotic relationship.\n\n🎬 5. 3 Idiots (2009) — ⭐ 8.4/10\n   Two friends search for their lost companion while recalling their college days.\n\n🎬 6. Toy Story (1995) — ⭐ 8.3/10\n   A cowboy doll feels threatened when a new spaceman toy becomes the favourite.\n",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.3333,
+          "passed": false,
+          "reason": "Query tokens in output: 1/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Years in output: {'19', '20'}, matched in context: {'19', '20'}",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0769,
+          "passed": true,
+          "reason": "Hallucinated sentences: 1/13",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Context chunks used: 6/6",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 0.875,
+          "passed": true,
+          "reason": "Expected tokens in context: 7/8",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "1/1 constraints matched: genre_id=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "Expected ~6 movies (top_n=20,available=6), ~6 detected.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ All titles ['Forrest Gump', 'Marty McFly', 'The Intouchables', 'Toy Story'] found in TMDB context",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    },
+    {
+      "case_name": "case_50",
+      "query": "Recommend a movie above 9.5 rating from the 80s.",
+      "category": "G_negative_edge",
+      "actual_output": "No movies were found matching your criteria. Try relaxing the filters.",
+      "metric_results": [
+        {
+          "metric_name": "AnswerRelevancy",
+          "score": 0.0,
+          "passed": false,
+          "reason": "Query tokens in output: 0/3",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Faithfulness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "Hallucination",
+          "score": 0.0,
+          "passed": true,
+          "reason": "Short/no context.",
+          "threshold": 0.3
+        },
+        {
+          "metric_name": "ContextualPrecision",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ContextualRecall",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No expected/context.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "ToolUsageVerification",
+          "score": 1.0,
+          "passed": true,
+          "reason": "✅ search_movies_tool was called (['search_movies_tool'])",
+          "threshold": 1.0
+        },
+        {
+          "metric_name": "ConstraintValidation",
+          "score": 1.0,
+          "passed": true,
+          "reason": "3/3 constraints matched: year_gte=✅; year_lte=✅; min_rating=✅",
+          "threshold": 0.75
+        },
+        {
+          "metric_name": "InstructionFollowing",
+          "score": 1.0,
+          "passed": true,
+          "reason": "5/5 format rules: non_empty=✅; has_year_or_noresults=✅; has_rating_or_noresults=✅; no_forbidden_phrases=✅; has_title_or_noresults=✅",
+          "threshold": 0.7
+        },
+        {
+          "metric_name": "ResponseCompleteness",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No results expected; answer correctly says so.",
+          "threshold": 0.6
+        },
+        {
+          "metric_name": "HallucinationGuard",
+          "score": 1.0,
+          "passed": true,
+          "reason": "No context — check skipped.",
+          "threshold": 0.9
+        }
+      ],
+      "overall_passed": false
+    }
+  ]
+}
